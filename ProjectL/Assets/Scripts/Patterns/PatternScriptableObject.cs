@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Pattern", menuName ="Pattern", order = 1)]
 public class PatternScriptableObject : ScriptableObject
 {
+    public float timeDelay = 1;
+    public float timeBeforeNext = 0;
     public List<PlatformData> platforms;
 }
 
