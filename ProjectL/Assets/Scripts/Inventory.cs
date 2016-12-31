@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Events;
 
 [System.Serializable]
-public class CatEvent : UnityEvent<int> { }
+public class UnityIntEvent : UnityEvent<int> { }
 
 public class Inventory
 {
@@ -18,7 +18,7 @@ public class Inventory
         }
     }
 
-    public CatEvent OnCatsUpdated = new CatEvent();
+    public UnityIntEvent OnCatsUpdated = new UnityIntEvent();
 
     public Inventory()
     {

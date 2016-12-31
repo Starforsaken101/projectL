@@ -16,10 +16,15 @@ public class PlatformSpawner : MonoBehaviour
 
     private IEnumerator InitiatePatternSpawn()
     {
-        while (true)
+        while (SpeedController.Instance.Speed > 0)
         {
             PatternScriptableObject pattern = patterns[Random.Range(0, patterns.Count)];
-            yield return StartCoroutine(SpawnPattern(pattern));
+
+            if (StaticVariables.DISTANCE >= pattern.distance)
+            {
+                yield return StartCoroutine(SpawnPattern(pattern));
+            }
+            yield return null;
         }
     }
 

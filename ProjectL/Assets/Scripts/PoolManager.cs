@@ -18,9 +18,7 @@ public class PoolManager
     }
 
     private static string PATH_PREFIX = "Prefabs/";
-    public static string SMALL_PLATFORM = "p_smallGround";
-    public static string CAT = "p_cat";
-    public static string PROJECTILE = "p_projectile";
+    private List<string> _keys = new List<string>() { "p_smallGround", "p_cat", "p_projectile", "p_floorPlatform", "p_enemy1", "p_testComplex" };
 
     Dictionary<string, Stack<GameObject>> _pool = new Dictionary<string, Stack<GameObject>>();
 
@@ -31,62 +29,51 @@ public class PoolManager
 
     private void Instantiate()
     {
-        // Small Platforms
-        Stack<GameObject> smallPlatforms = new Stack<GameObject>();
+        for (int i = 0; i < _keys.Count; i++)
+        {
+            CreatePool(_keys[i]);
+        }
+    }
+
+    private void CreatePool(string prefabKey)
+    {
+        Stack<GameObject> newStack = new Stack<GameObject>();
         for (int i = 0; i < 3; i++)
         {
-            GameObject gameObject = Utils.InstantiateGameObjectByPath(PATH_PREFIX + SMALL_PLATFORM);
+            GameObject gameObject = Utils.InstantiateGameObjectByPath(PATH_PREFIX + prefabKey);
             gameObject.SetActive(false);
-            smallPlatforms.Push(gameObject);
+            newStack.Push(gameObject);
         }
 
-        _pool.Add(SMALL_PLATFORM, smallPlatforms);
-
-        // Cats
-        Stack<GameObject> cats = new Stack<GameObject>();
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject gameObject = Utils.InstantiateGameObjectByPath(PATH_PREFIX + CAT);
-            gameObject.SetActive(false);
-            cats.Push(gameObject);
-        }
-
-        _pool.Add(CAT, cats);
-
-        // Projectiles
-        Stack<GameObject> projectiles = new Stack<GameObject>();
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject gameObject = Utils.InstantiateGameObjectByPath(PATH_PREFIX + PROJECTILE);
-            gameObject.SetActive(false);
-            projectiles.Push(gameObject);
-        }
-
-        _pool.Add(PROJECTILE, projectiles);
+        _pool.Add(prefabKey, newStack);
     }
 
     public GameObject GetGameObject(string key)
     {
-        if (_pool[key] == null)
+        if (!_pool.ContainsKey(key))
         {
             Debug.LogError("[PoolManager - GetGameObject] - Error: pool of key " + key + " does not exist");
             return null;
         }
 
+        GameObject gameObject;
         Stack<GameObject> stack = _pool[key];
         if (stack.Count == 0)
         {
-            return Utils.InstantiateGameObjectByPath(PATH_PREFIX + key);
+            gameObject = Utils.InstantiateGameObjectByPath(PATH_PREFIX + key);
+            gameObject.name = key;
+            return gameObject;
         }
 
-        GameObject gameObject = stack.Pop();
+        gameObject = stack.Pop();
         gameObject.SetActive(true);
+        gameObject.name = key;
         return gameObject;
     }
 
     public void ReturnGameObject(string key, GameObject gameObject)
     {
-        if (_pool[key] == null)
+        if (!_pool.ContainsKey(key))
         {
             Debug.LogError("[PoolManager - ReturnGameObject] - Error: pool of key " + key + " does not exist");
             return;

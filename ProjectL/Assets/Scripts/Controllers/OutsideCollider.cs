@@ -8,7 +8,7 @@ public class OutsideCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Platform")
         {
-            PoolManager.Instance.ReturnGameObject(PoolManager.SMALL_PLATFORM, collision.gameObject);
+            PoolManager.Instance.ReturnGameObject(collision.gameObject.name, collision.gameObject);
         }
     }
 }

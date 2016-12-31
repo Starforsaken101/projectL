@@ -8,9 +8,7 @@ public class Projectile : MovableObject
     {
         if (collision.gameObject.tag == "Player")
         {
-            // TODO: Make a better way to kill the player
-            GameObject.Destroy(collision.gameObject);
-            PoolManager.Instance.ReturnGameObject(PoolManager.PROJECTILE, gameObject);
+            collision.GetComponent<PlayerController>().OnDeath();
         }
     }
 }

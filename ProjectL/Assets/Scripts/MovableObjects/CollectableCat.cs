@@ -9,7 +9,7 @@ public class CollectableCat : MovableObject
         if (collision.gameObject.tag == "Player")
         {
             Inventory.Instance.AddCat();
-            PoolManager.Instance.ReturnGameObject(PoolManager.CAT, gameObject);
+            PoolManager.Instance.ReturnGameObject(gameObject.name, gameObject);
         }
     }
 }
