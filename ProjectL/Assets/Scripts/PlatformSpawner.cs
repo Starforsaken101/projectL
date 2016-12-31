@@ -6,7 +6,7 @@ public class PlatformSpawner : MonoBehaviour
 {
     public List<PatternScriptableObject> patterns;
 
-    private Vector3 _startPosition = new Vector3(8.81f, 0, 0);
+    private Vector3 _startPosition = new Vector3(8f, 0, 0);
     private WaitForSeconds _waitForSeconds = new WaitForSeconds(0.5f);
 
     void Start()
@@ -20,7 +20,7 @@ public class PlatformSpawner : MonoBehaviour
         {
             PatternScriptableObject pattern = patterns[Random.Range(0, patterns.Count)];
 
-            if (StaticVariables.DISTANCE >= pattern.distance)
+            if (StaticVariables.DISTANCE >= pattern.distance && (pattern.disappearDistance < 0 || StaticVariables.DISTANCE <= pattern.disappearDistance))
             {
                 yield return StartCoroutine(SpawnPattern(pattern));
             }
@@ -30,13 +30,11 @@ public class PlatformSpawner : MonoBehaviour
 
     private IEnumerator SpawnPattern(PatternScriptableObject pattern)
     {
-        _waitForSeconds = new WaitForSeconds(pattern.timeDelay);
         for (int i = 0; i < pattern.platforms.Count; i++)
         {
             yield return StartCoroutine(SpawnPlatformByKey(pattern.platforms[i]));
-            yield return _waitForSeconds;
+            yield return new WaitForSeconds(pattern.platforms[i].timeDelay);
         }
-        yield return new WaitForSeconds(pattern.timeBeforeNext);
     }
 
     private IEnumerator SpawnPlatformByKey(PlatformData platformData)

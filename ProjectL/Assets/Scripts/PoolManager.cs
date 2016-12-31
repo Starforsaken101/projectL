@@ -18,7 +18,8 @@ public class PoolManager
     }
 
     private static string PATH_PREFIX = "Prefabs/";
-    private List<string> _keys = new List<string>() { "p_smallGround", "p_cat", "p_projectile", "p_floorPlatform", "p_enemy1", "p_testComplex" };
+    private List<string> _keys = new List<string>() { "p_smallGround", "p_cat", "p_projectile", "p_floorPlatform", "p_enemy1",
+                                                       "p_level1_platform1", "p_level1_platform2", "p_level1_platform4", "p_level1_platform5"};
 
     Dictionary<string, Stack<GameObject>> _pool = new Dictionary<string, Stack<GameObject>>();
 
@@ -67,12 +68,19 @@ public class PoolManager
 
         gameObject = stack.Pop();
         gameObject.SetActive(true);
+        
         gameObject.name = key;
         return gameObject;
     }
 
     public void ReturnGameObject(string key, GameObject gameObject)
     {
+        if (gameObject.transform.parent != null)
+        {
+            key = gameObject.transform.parent.name;
+            gameObject = gameObject.transform.parent.gameObject;
+        }
+
         if (!_pool.ContainsKey(key))
         {
             Debug.LogError("[PoolManager - ReturnGameObject] - Error: pool of key " + key + " does not exist");

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MovableObject
+public class Enemy : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +12,7 @@ public class Enemy : MovableObject
                 collision.transform.position.x + (collision.bounds.size.x/2) > transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2)) 
             {
                 collision.transform.GetComponent<Rigidbody2D>().AddForce(Vector2.up*300);
-                PoolManager.Instance.ReturnGameObject(gameObject.name, gameObject);
+                gameObject.SetActive(false);
             }
             else
             {

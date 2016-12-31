@@ -6,8 +6,7 @@ using UnityEngine;
 public class PatternScriptableObject : ScriptableObject
 {
     public float distance = 0;
-    public float timeDelay = 1;
-    public float timeBeforeNext = 0;
+    public float disappearDistance = -1;
     public List<PlatformData> platforms;
 }
 
@@ -16,4 +15,5 @@ public class PlatformData
 {
     public string platformID;
     public float y;
+    public float timeDelay = 1;
 }
