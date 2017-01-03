@@ -8,10 +8,10 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (collision.transform.position.y > transform.position.y && 
+            if (collision.transform.position.y > transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2) && 
                 collision.transform.position.x + (collision.bounds.size.x/2) > transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2)) 
             {
-                collision.transform.GetComponent<Rigidbody2D>().AddForce(Vector2.up*300);
+                collision.GetComponent<PlayerController>().OnEnemyJump();
                 gameObject.SetActive(false);
             }
             else

@@ -17,6 +17,14 @@ public class SpeedController
         }
     }
 
+    public void Initialize()
+    {
+        _isInitialized = true;
+    }
+
+    private bool _isInitialized = false;
+    public bool IsInitialized {  get { return _isInitialized; } }
+
     private const float DEFAULT_SPEED = 4;
     private float _speed = DEFAULT_SPEED;
     public float Speed

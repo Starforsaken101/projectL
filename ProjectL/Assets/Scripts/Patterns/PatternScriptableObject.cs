@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Pattern", menuName ="Pattern", order = 1)]
 public class PatternScriptableObject : ScriptableObject
 {
-    public float distance = 0;
-    public float disappearDistance = -1;
     public List<PlatformData> platforms;
 }
 
@@ -16,4 +14,5 @@ public class PlatformData
     public string platformID;
     public float y;
     public float timeDelay = 1;
+    public Sprite platformAsset;
 }
