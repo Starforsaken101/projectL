@@ -14,7 +14,7 @@ public class PlatformSpawner : MonoBehaviour
     public List<DistanceBasedPatterns> patterns;
 
     private float _currentTime = 0;
-    private Vector3 _startPosition = new Vector3(10.78f, 0, 0);
+    private Vector3 _startPosition = new Vector3(10.78f, 0, -2.72f);
 
     void Start()
     {
@@ -26,7 +26,6 @@ public class PlatformSpawner : MonoBehaviour
         PatternScriptableObject pattern;
         while (SpeedController.Instance.Speed > 0)
         {
-            //PatternScriptableObject pattern = patterns[Random.Range(0, patterns.Count)];
             pattern = null;
             for (int i = patterns.Count - 1; i >= 0; i--)
             {

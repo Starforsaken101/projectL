@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     private Animator _animator;
     private Rigidbody2D _rigidBody;
 
+    private const float BOUNCE_BUFFER_TIME = 0.2f;
+
     private bool _isDead = false;
     private bool _isInAir = false;
+    private bool _isBounce = false;
+    private float _currentBounceBufferTime = 0;
 
     void Awake()
     {
         _isDead = false;
         _isInAir = false;
+        _isBounce = false;
 
         _rigidBody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -30,25 +37,55 @@ public class PlayerController : MonoBehaviour
     {
         if (!_isDead)
         {
-            if (Input.GetKeyDown("space") && !_isInAir)
+            if ((Input.GetKeyDown("space") || IsTouch()) && !_isInAir)
             {
-                _rigidBody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+                if (_isBounce)
+                {
+                    _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 7);
+                    _isBounce = false;
+                }
+                else
+                {
+                    _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 5);
+                }
                 Jump();
+            }
+
+            if (_isBounce)
+            {
+                if (_currentBounceBufferTime <= 0)
+                {
+                    _isInAir = true;
+                    _isBounce = false;
+                }
+                _currentBounceBufferTime -= Time.deltaTime;
             }
         }
 	}
 
+    private bool IsTouch()
+    {
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+    }
+
     private void Jump()
     {
-        _animator.ResetTrigger("Land");
-        _animator.SetTrigger("Jump");
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            _animator.ResetTrigger("Land");
+            _animator.SetTrigger("Jump");
+        }
         _isInAir = true;
     }
 
     public void OnEnemyJump()
     {
-        _rigidBody.AddForce(Vector2.up * 300);
+        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 3);
         Jump();
+
+        _isInAir = false;
+        _isBounce = true;
+        _currentBounceBufferTime = BOUNCE_BUFFER_TIME;
     }
 
     public void OnDeath()
