@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public static class StaticVariables
 {
-    public static float DISTANCE = 0;    
+    //public static float DISTANCE = 0;    
 }

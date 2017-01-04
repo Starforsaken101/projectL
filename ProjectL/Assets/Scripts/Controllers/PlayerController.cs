@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidBody;
 
+    [SerializeField]
+    private UILosePopup _losePopup; // This is super temp;
+
     private const float BOUNCE_BUFFER_TIME = 0.2f;
 
     private bool _isDead = false;
@@ -51,6 +54,11 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
 
+            if (Input.GetKeyDown("x"))
+            {
+                OnDeath();
+            }
+
             if (_isBounce)
             {
                 if (_currentBounceBufferTime <= 0)
@@ -93,5 +101,7 @@ public class PlayerController : MonoBehaviour
         _isDead = true;
         _animator.SetTrigger("Die");
         SpeedController.Instance.Speed = 0;
+        // Temp
+        _losePopup.gameObject.SetActive(true);
     }
 }

@@ -2,28 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager
+public class PoolManager : Singleton<PoolManager>
 {
-    private static PoolManager _instance;
-    public static PoolManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new PoolManager();
-            }
-            return _instance;
-        }
-    }
-
     private static string PATH_PREFIX = "Prefabs/";
     private List<string> _keys = new List<string>() { "p_cat", "p_projectile", "p_floorPlatform", "p_enemy1",
                                                       "p_level1_platform1", "p_level1_platform2", "p_level1_platform4", "p_level1_platform5"};
 
     Dictionary<string, Stack<GameObject>> _pool = new Dictionary<string, Stack<GameObject>>();
 
-    public PoolManager()
+    void OnEnable()
     {
         Instantiate();
     }

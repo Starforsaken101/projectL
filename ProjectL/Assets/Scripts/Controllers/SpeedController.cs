@@ -33,6 +33,12 @@ public class SpeedController
         set { _speed = value; }
     }
 
+    public void ResetSpeedController()
+    {
+        _isInitialized = false;
+        _speed = DEFAULT_SPEED;
+    }
+
     public float GetDeltaTime(float deltaTime)
     {
         return (_speed / DEFAULT_SPEED) * deltaTime;

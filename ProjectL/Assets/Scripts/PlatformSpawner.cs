@@ -29,7 +29,7 @@ public class PlatformSpawner : MonoBehaviour
             pattern = null;
             for (int i = patterns.Count - 1; i >= 0; i--)
             {
-                if (StaticVariables.DISTANCE >= patterns[i].distance)
+                if (DistanceController.Instance.Distance >= patterns[i].distance)
                 {
                     pattern = patterns[i].patterns[Random.Range(0, patterns[i].patterns.Count)];
                     break;

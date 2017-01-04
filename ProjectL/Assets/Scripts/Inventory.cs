@@ -27,9 +27,9 @@ public class Inventory
 
     private int _cats = 0;
 
-    public void AddCat()
+    public void AddCat(int numCats)
     {
-        _cats++;
+        _cats += numCats;
         OnCatsUpdated.Invoke(_cats);
     }
 

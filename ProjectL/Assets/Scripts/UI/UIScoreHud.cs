@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICatHud : MonoBehaviour
+public class UIScoreHud : MonoBehaviour
 {
     [SerializeField]
     private Text _hudText;
 
     void Awake()
     {
-        Inventory.Instance.OnCatsUpdated.AddListener(OnInventoryUpdate);
+        ScoreManager.Instance.OnScoreUpdated.AddListener(OnScoreUpdate);
     }
 
-    private void OnInventoryUpdate(int x)
+    private void OnScoreUpdate(int x)
     {
         UpdateHudText(x.ToString());
     }

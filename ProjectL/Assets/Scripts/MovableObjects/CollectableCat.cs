@@ -8,7 +8,7 @@ public class CollectableCat : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Inventory.Instance.AddCat();
+            ScoreManager.Instance.AddPoints(1);
             gameObject.SetActive(false);
         }
     }

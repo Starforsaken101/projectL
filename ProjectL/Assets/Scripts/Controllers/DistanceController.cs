@@ -3,23 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DistanceController : MonoBehaviour
+public class DistanceController
 {
-    [SerializeField]
-    private Text _distanceText;
-
-    private float _currTime = 0;
-    private static float TIME_CONST = 0.1f;
-    
-	void Update ()
+    private static DistanceController _instance;
+    public static DistanceController Instance
     {
-        if (_currTime >= TIME_CONST)
+        get
         {
-            _currTime = 0;
-            StaticVariables.DISTANCE++;
-
-            _distanceText.text = StaticVariables.DISTANCE.ToString();
+            if (_instance == null)
+            {
+                _instance = new DistanceController();
+            }
+            return _instance;
         }
-        _currTime += SpeedController.Instance.GetDeltaTime(Time.deltaTime);
-	}
+    }
+
+    private int _distance;
+    public int Distance
+    {
+        get { return _distance; }
+    }
+
+    public void AddToDistance(int distance)
+    {
+        _distance += distance;
+    }
+
+    public void ResetDistance()
+    {
+        _distance = 0;
+    }
 }
