@@ -3,6 +3,9 @@
 [System.Serializable]
 public class UnityIntEvent : UnityEvent<int> { }
 
+[System.Serializable]
+public class PopupEvent : UnityEvent<Popups> { }
+
 public class Inventory
 {
     private static Inventory _instance;

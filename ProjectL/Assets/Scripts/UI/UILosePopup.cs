@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UILosePopup : MonoBehaviour
+public class UILosePopup : UIPopup
 {
     [SerializeField]
     private Text _score;
@@ -21,6 +21,6 @@ public class UILosePopup : MonoBehaviour
     public void Restart()
     {
         GameController.Instance.RestartGame();
-        gameObject.SetActive(false);
+        ClosePopup();
     }
 }

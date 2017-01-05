@@ -7,9 +7,6 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidBody;
 
-    [SerializeField]
-    private UILosePopup _losePopup; // This is super temp;
-
     private const float BOUNCE_BUFFER_TIME = 0.2f;
     private const float XPOSITION = -2.97f;
 
@@ -102,7 +99,6 @@ public class PlayerController : MonoBehaviour
         _isDead = true;
         _animator.SetTrigger("Die");
         SpeedController.Instance.Speed = 0;
-        // Temp
-        _losePopup.gameObject.SetActive(true);
+        PopupManager.Instance.ShowPopup(Popups.POPUP_LOSE);
     }
 }
