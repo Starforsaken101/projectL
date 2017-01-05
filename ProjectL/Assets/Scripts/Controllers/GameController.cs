@@ -18,12 +18,22 @@ public class GameController
         }
     }
 
-    public void RestartGame()
+    private void ResetControllers()
     {
         ScoreManager.Instance.ResetScore();
         DistanceController.Instance.ResetDistance();
         SpeedController.Instance.ResetSpeedController();
+    }
 
-        SceneManager.LoadScene("Gamescene");
+    public void RestartGame()
+    {
+        ResetControllers();
+        SceneController.Instance.LoadScene(SceneController.SCENE_GAME);
+    }
+
+    public void BackToMainMenu()
+    {
+        ResetControllers();
+        SceneController.Instance.LoadScene(SceneController.SCENE_MAINMENU);
     }
 }

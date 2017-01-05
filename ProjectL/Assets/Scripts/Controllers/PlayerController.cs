@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private UILosePopup _losePopup; // This is super temp;
 
     private const float BOUNCE_BUFFER_TIME = 0.2f;
+    private const float XPOSITION = -2.97f;
 
     private bool _isDead = false;
     private bool _isInAir = false;
