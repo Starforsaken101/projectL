@@ -28,12 +28,12 @@ public class GameController
     public void RestartGame()
     {
         ResetControllers();
-        SceneController.Instance.LoadScene(SceneController.SCENE_GAME);
+        SceneController.Instance.LoadScene(Scenes.GAMESCENE);
     }
 
     public void BackToMainMenu()
     {
         ResetControllers();
-        SceneController.Instance.LoadScene(SceneController.SCENE_MAINMENU);
+        SceneController.Instance.LoadScene(Scenes.MAIN_MENU);
     }
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class Inventory
 {
@@ -15,14 +15,24 @@ public class Inventory
         }
     }
 
-    public UnityIntEvent OnCatsUpdated = new UnityIntEvent();
+    private Inventory()
+    {
+        Instantiate();
+    }
+
+    private void Instantiate()
+    {
+        _cats = SaveFileManager.Instance.NumCats;
+    }
 
     private int _cats = 0;
+    public UnityIntEvent OnCatsUpdated = new UnityIntEvent();
 
     public void AddCat(int numCats)
     {
         _cats += numCats;
         OnCatsUpdated.Invoke(_cats);
+        SaveFileManager.Instance.NumCats = _cats;
     }
 
     public int TotalCats()
@@ -36,6 +46,7 @@ public class Inventory
         {
             _cats -= num;
             OnCatsUpdated.Invoke(_cats);
+            SaveFileManager.Instance.NumCats = _cats;
         }
     }
 }

@@ -8,14 +8,13 @@ public enum Scenes
     [StringValue("GameScene")]
     GAMESCENE,
     [StringValue("MainMenu")]
-    MAIN_MENU
+    MAIN_MENU,
+    [StringValue("Shop")]
+    SHOP
 }
 
 public class SceneController
 {
-    public static string SCENE_GAME = "Gamescene";
-    public static string SCENE_MAINMENU = "MainMenu";
-
     private static SceneController _instance;
     public static SceneController Instance
     {
@@ -29,8 +28,8 @@ public class SceneController
         }
     }
 
-    public void LoadScene(string name)
+    public void LoadScene(Scenes scene)
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(StringEnum.GetStringValue(scene));
     }
 }

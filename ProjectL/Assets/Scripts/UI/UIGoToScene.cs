@@ -9,6 +9,6 @@ public class UIGoToScene : MonoBehaviour
 
     public void GoToScene()
     {
-        SceneController.Instance.LoadScene(StringEnum.GetStringValue(_scene));
+        SceneController.Instance.LoadScene(_scene);
     }
 }
