@@ -1,11 +1,5 @@
 ﻿using UnityEngine.Events;
 
-[System.Serializable]
-public class UnityIntEvent : UnityEvent<int> { }
-
-[System.Serializable]
-public class PopupEvent : UnityEvent<Popups> { }
-
 public class Inventory
 {
     private static Inventory _instance;
@@ -22,11 +16,6 @@ public class Inventory
     }
 
     public UnityIntEvent OnCatsUpdated = new UnityIntEvent();
-
-    public Inventory()
-    {
-        _cats = 0;
-    }
 
     private int _cats = 0;
 

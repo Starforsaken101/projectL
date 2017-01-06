@@ -7,9 +7,10 @@ public class SetAllChildrenActive : MonoBehaviour
 	// Use this for initialization
 	void OnEnable ()
     {
-	    foreach(Transform child in transform)
+        Transform[] childrenComponents = GetComponentsInChildren<Transform>(true);
+        for (int i = 0; i < childrenComponents.Length; i++)
         {
-            child.gameObject.SetActive(true);
+            childrenComponents[i].gameObject.SetActive(true);
         }
 	}
 }

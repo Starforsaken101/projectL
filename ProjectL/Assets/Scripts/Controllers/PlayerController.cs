@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     private bool _isDead = false;
     private bool _isInAir = false;
     private bool _isBounce = false;
+
     private float _currentBounceBufferTime = 0;
+    private float _currentFloatTime = 0;
 
     void Awake()
     {
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_isDead)
         {
-            if ((Input.GetKeyDown("space") || IsTouch()) && !_isInAir)
+            if ((Input.GetKeyDown("space") || Input.GetMouseButtonDown(0) || IsTouch()) && !_isInAir)
             {
                 if (_isBounce)
                 {
@@ -52,9 +54,27 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
 
+            if (_isInAir)
+            {
+                if (Input.GetMouseButton(0) || IsTouch())
+                {
+                    if (_rigidBody.velocity.y < 0 && _currentFloatTime > 0)
+                    {
+                        // Float
+                        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, -0.5f);
+                        _currentFloatTime -= Time.deltaTime;
+                    }
+                }
+            }
+
             if (Input.GetKeyDown("x"))
             {
                 OnDeath();
+            }
+
+            if (Input.GetKeyDown("y"))
+            {
+                PowerupController.Instance.ActivatePowerup(Powerup.MAGNET);
             }
 
             if (_isBounce)
@@ -82,6 +102,8 @@ public class PlayerController : MonoBehaviour
             _animator.SetTrigger("Jump");
         }
         _isInAir = true;
+
+        _currentFloatTime = UpgradeManager.Instance.CurrentFloatTime.floatTime;
     }
 
     public void OnEnemyJump()
