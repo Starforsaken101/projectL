@@ -16,6 +16,9 @@ public class PlatformSpawner : MonoBehaviour
     private float _currentTime = 0;
     private Vector3 _startPosition = new Vector3(10.78f, 0, -2.72f);
 
+    private int _lastIndex = -1;
+    private int[] validChoices;
+
     void Start()
     {
         StartCoroutine(InitiatePatternSpawn());
@@ -31,11 +34,36 @@ public class PlatformSpawner : MonoBehaviour
             {
                 if (DistanceController.Instance.Distance >= patterns[i].distance)
                 {
-                    pattern = patterns[i].patterns[Random.Range(0, patterns[i].patterns.Count)];
+                    FillValidChoices(patterns[i].patterns.Count);
+                    _lastIndex = validChoices[Random.Range(0, validChoices.Length)];
+                    //pattern = patterns[i].patterns[Random.Range(0, patterns[i].patterns.Count)];
+                    pattern = patterns[i].patterns[_lastIndex];
                     break;
                 }
             }
             yield return StartCoroutine(SpawnPattern(pattern));
+        }
+    }
+
+    private void FillValidChoices(int count)
+    {
+        if (count > 1 && _lastIndex >= 0)
+        {
+            validChoices = new int[count - 1];
+        }
+        else
+        {
+            validChoices = new int[count];
+        }
+
+        int j = 0;
+        for (int i = 0; i < count; i++)
+        {
+            if (i != _lastIndex)
+            {
+                validChoices[j] = i;
+                j++;
+            }
         }
     }
 
