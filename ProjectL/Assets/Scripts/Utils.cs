@@ -25,6 +25,10 @@ public static class Utils
     public static GameObject InstantiateGameObjectByPath(string path)
     {
         UnityEngine.Object prefab = Resources.Load(path);
+
+        if (prefab == null)
+            return null;
+
         return (GameObject)GameObject.Instantiate(prefab);
     }
 
