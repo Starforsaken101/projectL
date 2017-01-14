@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpinningSnail : Enemy
 {
     [SerializeField]
+    private Animator _animator;
+
+    [SerializeField]
     private float _multiplier = 1;
 
     private bool _isTriggered;
@@ -14,7 +17,13 @@ public class SpinningSnail : Enemy
         _isTriggered = false;
     }
 
-    public void ImTriggered()
+    public void TriggerShellAnimation()
+    {
+        _animator.ResetTrigger("NoticeSenpai");
+        _animator.SetTrigger("NoticeSenpai");
+    }
+
+    public void TriggerMovement()
     {
         _isTriggered = true;
     }

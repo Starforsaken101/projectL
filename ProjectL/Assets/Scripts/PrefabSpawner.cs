@@ -24,6 +24,7 @@ public class PrefabSpawner : MonoBehaviour
         GameObject go = Utils.InstantiateGameObjectByPath(_path);
         if (go != null)
         {
+            go.transform.position = new Vector3(0, 0, go.transform.position.z);
             go.transform.SetParent(this.transform, false);
         }
     }

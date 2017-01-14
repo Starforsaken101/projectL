@@ -29,7 +29,9 @@ public static class Utils
         if (prefab == null)
             return null;
 
-        return (GameObject)GameObject.Instantiate(prefab);
+        GameObject go = (GameObject)GameObject.Instantiate(prefab);
+        go.name = prefab.name;
+        return go;
     }
 
     public static Sprite GetSpriteFromResources(string path)
