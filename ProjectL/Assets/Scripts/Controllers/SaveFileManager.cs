@@ -44,6 +44,16 @@ public class SaveFileManager
             PlayerPrefs.Save();
         }
 
+        if (PlayerPrefs.HasKey(KEY_CATCHUP_SPEED_LEVEL))
+        {
+            _catchupSpeedUpgradeLevel = PlayerPrefs.GetInt(KEY_CATCHUP_SPEED_LEVEL);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(KEY_CATCHUP_SPEED_LEVEL, _catchupSpeedUpgradeLevel);
+            PlayerPrefs.Save();
+        }
+
         if (PlayerPrefs.HasKey(KEY_NUM_CATS))
         {
             _numCats = PlayerPrefs.GetInt(KEY_NUM_CATS);
@@ -113,12 +123,16 @@ public class SaveFileManager
 
     private const string KEY_TINY_MAGNET_UPGRADE_LEVEL = "TinyMagnetUpgradeLevel";
     private const string KEY_FLOAT_TIME_UPGRADE_LEVEL = "FloatTimeUpgradeLevel";
+    private const string KEY_CATCHUP_SPEED_LEVEL = "CatchupSpeedUpgradeLevel";
+
     private const string KEY_NUM_CATS = "NumCats";
+
     private const string KEY_CLOTHING_HAIR = "ClothingHair";
     private const string KEY_CLOTHING_HAIR_ACCESSORY = "ClothingHairAccessory";
     private const string KEY_CLOTHING_TOP = "ClothingTop";
     private const string KEY_CLOTHING_BOTTOM = "ClothingBottom";
     private const string KEY_CLOTHING_SHOES = "ClothingShoes";
+
     private const string KEY_OWNED_HAIR = "OwnedHair";
     private const string KEY_OWNED_HAIR_ACCESSORY = "OwnedHairAccessory";
     private const string KEY_OWNED_TOP = "OwnedTop";
@@ -264,6 +278,18 @@ public class SaveFileManager
         {
             _tinyMagnetUpgradeLevel = value;
             PlayerPrefs.SetInt(KEY_TINY_MAGNET_UPGRADE_LEVEL, _tinyMagnetUpgradeLevel);
+            PlayerPrefs.Save();
+        }
+    }
+
+    private int _catchupSpeedUpgradeLevel;
+    public int CatchupSpeedUpgradeLevel
+    {
+        get { return _catchupSpeedUpgradeLevel; }
+        set
+        {
+            _catchupSpeedUpgradeLevel = value;
+            PlayerPrefs.SetInt(KEY_CATCHUP_SPEED_LEVEL, _catchupSpeedUpgradeLevel);
             PlayerPrefs.Save();
         }
     }

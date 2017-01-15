@@ -7,7 +7,9 @@ public enum Upgrade
     [StringValue("Tiny Magnet")]
     TINY_MAGNET,
     [StringValue("Float Time")]
-    FLOAT_TIME
+    FLOAT_TIME,
+    [StringValue("Catchup Speed")]
+    CATCHUP_SPEED
 }
 
 public class UpgradeManager
@@ -34,6 +36,17 @@ public class UpgradeManager
         }
     }
 
+    public struct CatchupSpeed
+    {
+        public float speed;
+        public int cost;
+        public CatchupSpeed(float speed, int cost)
+        {
+            this.speed = speed;
+            this.cost = cost;
+        }
+    }
+
     private static UpgradeManager _instance;
     public static UpgradeManager Instance
     {
@@ -56,6 +69,7 @@ public class UpgradeManager
     {
         _currentTinyMagnet = _tinyMagnetUpgradePath[SaveFileManager.Instance.TinyMagnetUpgradeLevel];
         _currentFloatTime = _floatTimeUpgradePath[SaveFileManager.Instance.FloatTimeUpgradeLevel];
+        _currentCatchupSpeed = _catchupSpeedUpgradePath[SaveFileManager.Instance.CatchupSpeedUpgradeLevel];
     }
 
     public bool IsMaxUpgrade(Upgrade upgrade)
@@ -66,6 +80,8 @@ public class UpgradeManager
                 return (GetUpgradeLevelOfTinyMagnet() == _tinyMagnetUpgradePath.Count - 1);
             case Upgrade.FLOAT_TIME:
                 return (GetUpgradeLevelOfFloatTime() == _floatTimeUpgradePath.Count - 1);
+            case Upgrade.CATCHUP_SPEED:
+                return (GetUpgradeLevelOfCatchupSpeed() == _catchupSpeedUpgradePath.Count - 1);
         }
         Debug.LogError("[UpgradeManager:IsMaxUpgrade] Upgrade does not exist");
         return false;
@@ -79,6 +95,8 @@ public class UpgradeManager
                 return GetNextTinyMagnetUpgrade().cost;
             case Upgrade.FLOAT_TIME:
                 return GetNextFloatTimeUpgrade().cost;
+            case Upgrade.CATCHUP_SPEED:
+                return GetNextCatchupSpeedLevel().cost;
         }
         Debug.LogError("[UpgradeManager:GetNextUpgradeCost] Upgrade does not exist");
         return 0;
@@ -92,6 +110,8 @@ public class UpgradeManager
                 return GetUpgradeLevelOfTinyMagnet();
             case Upgrade.FLOAT_TIME:
                 return GetUpgradeLevelOfFloatTime();
+            case Upgrade.CATCHUP_SPEED:
+                return GetUpgradeLevelOfCatchupSpeed();
         }
         Debug.LogError("[UpgradeManager:GetUpgradeLevel] Upgrade does not exist");
         return 0;
@@ -106,6 +126,9 @@ public class UpgradeManager
                 break;
             case Upgrade.FLOAT_TIME:
                 UpgradeFloatTime();
+                break;
+            case Upgrade.CATCHUP_SPEED:
+                UpgradeCatchupSpeed();
                 break;
         }
     }
@@ -156,5 +179,29 @@ public class UpgradeManager
     {
         _currentFloatTime = GetNextFloatTimeUpgrade();
         SaveFileManager.Instance.FloatTimeUpgradeLevel= GetUpgradeLevelOfFloatTime();
+    }
+
+    /*------------------CATCHUP SPEED------------------*/
+    private CatchupSpeed _currentCatchupSpeed;
+    public CatchupSpeed CurrentCatchupSpeed { get { return _currentCatchupSpeed; } }
+
+    private List<CatchupSpeed> _catchupSpeedUpgradePath = new List<CatchupSpeed> { new CatchupSpeed(0.5f, 0), new CatchupSpeed(0.75f, 20),
+                                                                                   new CatchupSpeed(1.0f, 40), new CatchupSpeed(1.5f, 60)};
+
+    private int GetUpgradeLevelOfCatchupSpeed() { return _catchupSpeedUpgradePath.IndexOf(_currentCatchupSpeed); }
+    private CatchupSpeed GetNextCatchupSpeedLevel()
+    {
+        int upgradeLevel = GetUpgradeLevelOfCatchupSpeed();
+        if (upgradeLevel < _catchupSpeedUpgradePath.Count - 1)
+        {
+            return _catchupSpeedUpgradePath[upgradeLevel + 1];
+        }
+        return _currentCatchupSpeed;
+    }
+
+    private void UpgradeCatchupSpeed()
+    {
+        _currentCatchupSpeed = GetNextCatchupSpeedLevel();
+        SaveFileManager.Instance.CatchupSpeedUpgradeLevel = GetUpgradeLevelOfCatchupSpeed();
     }
 }

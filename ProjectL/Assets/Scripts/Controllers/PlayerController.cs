@@ -17,6 +17,13 @@ public class PlayerController : MonoBehaviour
     private float _currentBounceBufferTime = 0;
     private float _currentFloatTime = 0;
 
+    [SerializeField]
+    private Transform _topTransform;
+    [SerializeField]
+    private Transform _middleTransform;
+    [SerializeField]
+    private Transform _bottomTransform;
+
     void Awake()
     {
         _isDead = false;
@@ -25,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
         _rigidBody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(KeepCentered());
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -88,6 +100,39 @@ public class PlayerController : MonoBehaviour
             }
         }
 	}
+
+    private IEnumerator KeepCentered()
+    {
+        while (true)
+        {
+            yield return StartCoroutine(CheckOffCenter());
+            yield return StartCoroutine(Recenter());
+        }
+        yield return null;
+    }
+
+    private IEnumerator CheckOffCenter()
+    {
+        while (transform.position.x == XPOSITION)
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator Recenter()
+    {
+        Vector3 offPosition = transform.position;
+        float recenterSpeed = UpgradeManager.Instance.CurrentCatchupSpeed.speed;
+        Vector3 currentPosition = Vector3.zero;
+        while (transform.position.x <= XPOSITION)
+        {
+            currentPosition = transform.position;
+            currentPosition.x = transform.position.x + (Time.deltaTime * recenterSpeed);
+
+            transform.position = currentPosition;
+            yield return null;
+        }
+    }
 
     private bool IsTouch()
     {
