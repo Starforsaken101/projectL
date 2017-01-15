@@ -5,11 +5,13 @@ using UnityEngine;
 public class PoolManager : Singleton<PoolManager>
 {
     private static string PATH_PREFIX = "Prefabs/";
-    private List<string> _keys = new List<string>() { "p_cat", "p_projectile", "p_floorPlatform", "p_enemy1", "p_spinningSnail",
+    private List<string> _keys = new List<string>() { "p_cat", "p_projectile", "p_floorPlatform", "p_floorPlatform_half",
+                                                      "p_enemy1", "p_spinningSnail",
                                                       "p_level1_platform1", "p_level1_platform2", "p_level1_platform5",
                                                       "p_spiderPlatform_oneLeft", "p_spiderPlatform_oneRight", "p_spiderPlatform_oneMiddle", "p_spiderPlatform_two",
                                                       "p_snailPlatform_oneLeft",
-                                                      "p_bigMushroomPlatform", "p_platformWithMushroom"};
+                                                      "p_bigMushroomPlatform", "p_platformWithMushroom", "p_platformWithMushroomAndSnail",
+                                                      "p_thornTrap", "p_platformOneTrap"};
 
     Dictionary<string, Stack<GameObject>> _pool = new Dictionary<string, Stack<GameObject>>();
 
@@ -67,8 +69,17 @@ public class PoolManager : Singleton<PoolManager>
     {
         if (gameObject.transform.parent != null)
         {
-            key = gameObject.transform.parent.name;
-            gameObject = gameObject.transform.parent.gameObject;
+            PrefabSpawner prefabSpawner = gameObject.transform.parent.GetComponent<PrefabSpawner>();
+            if (prefabSpawner == null)
+            {
+                key = gameObject.transform.parent.name;
+                gameObject = gameObject.transform.parent.gameObject;
+            }
+            else
+            {
+                key = prefabSpawner.transform.parent.name;
+                gameObject = prefabSpawner.transform.parent.gameObject;
+            }
         }
 
         if (!_pool.ContainsKey(key))
