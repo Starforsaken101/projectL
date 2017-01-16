@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Enemy
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    public UnityEvent OnDespawn = new UnityEvent();
+
+    void OnDisable()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<PlayerController>().OnDeath();
-        }
+        OnDespawn.Invoke();
     }
 }
