@@ -108,7 +108,6 @@ public class PlayerController : MonoBehaviour
             yield return StartCoroutine(CheckOffCenter());
             yield return StartCoroutine(Recenter());
         }
-        yield return null;
     }
 
     private IEnumerator CheckOffCenter()

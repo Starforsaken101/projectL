@@ -88,6 +88,16 @@ public class PoolManager : Singleton<PoolManager>
             return;
         }
 
+        // Destroy point containers
+        PointContainer[] pointContainers = gameObject.GetComponentsInChildren<PointContainer>();
+        if (pointContainers.Length > 0)
+        {
+            for (int i = 0; i < pointContainers.Length; i++)
+            {
+                GameObject.Destroy(pointContainers[i].gameObject);
+            }
+        }
+
         Stack<GameObject> stack = _pool[key];
         if (stack.Count == 3)
         {
