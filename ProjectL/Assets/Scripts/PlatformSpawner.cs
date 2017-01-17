@@ -103,6 +103,15 @@ public class PlatformSpawner : MonoBehaviour
         }
 
         platform.transform.position = new Vector3(_startPosition.x, platformData.y, _startPosition.z);
+
+        if (!string.IsNullOrEmpty(platformData.pointObjectID))
+        {
+            GameObject pointGO = Utils.InstantiateGameObjectByPath(platformData.pointObjectID);
+            pointGO.transform.SetParent(platform.transform);
+            pointGO.transform.localPosition = new Vector3(platformData.pointStartPosition.x,
+                                                          platformData.pointStartPosition.y,
+                                                          -2f);
+        }
         yield return null;
     }
 }

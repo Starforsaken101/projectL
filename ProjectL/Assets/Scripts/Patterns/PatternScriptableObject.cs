@@ -15,4 +15,6 @@ public class PlatformData
     public float y;
     public float timeDelay = 1;
     public Sprite platformAsset;
+    public string pointObjectID;
+    public Vector2 pointStartPosition;
 }
