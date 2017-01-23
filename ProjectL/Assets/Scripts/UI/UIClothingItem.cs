@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIClothingItem : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class UIClothingItem : MonoBehaviour
     [SerializeField]
     private Button _btnEquip;
     [SerializeField]
-    private Text _txtCost;
+    private TextMeshProUGUI _txtCost;
     [SerializeField]
     private Image _imgEquipped;
     [SerializeField]

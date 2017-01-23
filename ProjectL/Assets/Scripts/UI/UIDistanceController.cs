@@ -1,15 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using TMPro;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class UIDistanceController : MonoBehaviour
 {
-    [SerializeField]
-    private Text _distanceText;
+    private TextMeshProUGUI _distanceText;
 
     private float _currTime = 0;
     private static float TIME_CONST = 0.1f;
+
+    void Awake()
+    {
+        _distanceText = GetComponent<TextMeshProUGUI>();
+    }
 
     void Update()
     {

@@ -6,6 +6,19 @@ public class UIConfigureClothing : MonoBehaviour
 {
     void Awake()
     {
+        UpdateClothing();
+
+        ClothingManager.Instance.OnBottomChanged.AddListener(UpdateClothing);
+        ClothingManager.Instance.OnTopChanged.AddListener(UpdateClothing);
+        ClothingManager.Instance.OnHairAccessoryChanged.AddListener(UpdateClothing);
+        ClothingManager.Instance.OnHairChanged.AddListener(UpdateClothing);
+        ClothingManager.Instance.OnShoesChanged.AddListener(UpdateClothing);
+    }
+
+    private void UpdateClothing()
+    {
+        DeactivateAllClothing();
+        
         Transform child;
         Transform[] childrenComponents = GetComponentsInChildren<Transform>(true);
         for (int i = 0; i < childrenComponents.Length; i++)
@@ -31,6 +44,25 @@ public class UIConfigureClothing : MonoBehaviour
             if (child.gameObject.name == "shoes")
             {
                 ConfigureClothing(child, ClothingManager.Instance.CurrentShoes);
+            }
+        }
+    }
+
+    private void DeactivateAllClothing()
+    {
+        Transform child;
+        Transform[] childrenComponents = GetComponentsInChildren<Transform>(true);
+        for (int i = 0; i < childrenComponents.Length; i++)
+        {
+            child = childrenComponents[i];
+
+            if (child.gameObject.name == "hair" ||
+                child.gameObject.name == "hairAccessory" ||
+                child.gameObject.name == "top" ||
+                child.gameObject.name == "bottom" ||
+                child.gameObject.name == "shoes")
+            {
+                child.gameObject.SetActive(false);
             }
         }
     }

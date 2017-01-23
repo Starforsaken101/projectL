@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIShopUpgrade : MonoBehaviour
 {
@@ -15,13 +16,13 @@ public class UIShopUpgrade : MonoBehaviour
     }
 
     [SerializeField]
-    private Text _upgradeName;
+    private TextMeshProUGUI _upgradeName;
     [SerializeField]
-    private Text _upgradeLevel;
+    private TextMeshProUGUI _upgradeLevel;
     [SerializeField]
     private Button _btnUpgrade;
     [SerializeField]
-    private Text _cost;
+    private TextMeshProUGUI _cost;
 
     void OnEnable()
     {

@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UILosePopup : UIPopup
 {
     [SerializeField]
-    private Text _score;
+    private TextMeshProUGUI _score;
     [SerializeField]
-    private Text _cats;
+    private TextMeshProUGUI _cats;
 
     void OnEnable()
     {
         ScoreManager.Instance.ConvertPointsToCats();
 
-        _score.text = "Score: " + ScoreManager.Instance.GetScore().ToString();
-        _cats.text = "Cats: " + Inventory.Instance.TotalCats().ToString();
+        _score.text = ": " + ScoreManager.Instance.GetScore().ToString();
+        _cats.text = ": " + Inventory.Instance.TotalCats().ToString();
     }
 
     public void Restart()
