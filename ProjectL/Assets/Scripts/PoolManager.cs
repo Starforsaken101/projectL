@@ -8,10 +8,11 @@ public class PoolManager : Singleton<PoolManager>
     private List<string> _keys = new List<string>() { "p_cat", "p_wasp", "p_floorPlatform", "p_floorPlatform_half",
                                                       "p_enemy1", "p_spinningSnail",
                                                       "p_level1_platform1", "p_level1_platform2", "p_level1_platform5",
-                                                      "p_spiderPlatform_oneLeft", "p_spiderPlatform_oneRight", "p_spiderPlatform_oneMiddle", "p_spiderPlatform_two",
+                                                      "p_spiderPlatform_oneLeft", "p_spiderPlatform_oneRight", "p_spiderPlatform_oneMiddle", "p_spiderPlatform_two", "p_floorPlatform_half_spider",
                                                       "p_snailPlatform_oneLeft",
                                                       "p_bigMushroomPlatform", "p_platformWithMushroom", "p_platformWithMushroomAndSnail",
-                                                      "p_thornTrap", "p_platformOneTrap"};
+                                                      "p_squareMushroomPlatform",
+                                                      "p_thornTrap", "p_platformOneTrap", "p_platformSpiderTrapSpider", "p_platformSpiderTrap", "p_floorPlatform_half_trap"};
 
     Dictionary<string, Stack<GameObject>> _pool = new Dictionary<string, Stack<GameObject>>();
 

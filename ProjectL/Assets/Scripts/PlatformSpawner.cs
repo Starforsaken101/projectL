@@ -57,7 +57,7 @@ public class PlatformSpawner : MonoBehaviour
         }
 
         int j = 0;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < validChoices.Length; i++)
         {
             if (i != _lastIndex)
             {

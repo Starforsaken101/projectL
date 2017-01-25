@@ -162,9 +162,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnDeath()
     {
-        _isDead = true;
-        _animator.SetTrigger("Die");
-        SpeedController.Instance.Speed = 0;
-        PopupManager.Instance.ShowPopup(Popups.POPUP_LOSE);
+        if (!_isDead)
+        {
+            _isDead = true;
+            _animator.SetTrigger("Die");
+            SpeedController.Instance.Speed = 0;
+            PopupManager.Instance.ShowPopup(Popups.POPUP_LOSE);
+        }
     }
 }

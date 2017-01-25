@@ -24,4 +24,9 @@ public class UILosePopup : UIPopup
         GameController.Instance.RestartGame();
         ClosePopup();
     }
+
+    public void OnMainMenu()
+    {
+        GameController.Instance.BackToMainMenu();
+    }
 }
