@@ -12,7 +12,17 @@ public enum ClothingSet
     [StringValue("RedDressSet")]
     RED_DRESS_SET,
     [StringValue("PHSet")]
-    PH_SET
+    PH_SET,
+    [StringValue("RedHair")]
+    RED_HAIR,
+    [StringValue("GreenHair")]
+    GREEN_HAIR,
+    [StringValue("PurpleHair")]
+    PURPLE_HAIR,
+    [StringValue("PinkHair")]
+    PINK_HAIR,
+    [StringValue("BlueHair")]
+    BLUE_HAIR
 }
 
 public enum ClothingType
@@ -185,7 +195,12 @@ public class ClothingManager
 
     private ClothingSet _currentHair;
     public ClothingSet CurrentHair {  get { return _currentHair; } }
-    private List<ClothingItem> hairCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0) };
+    private List<ClothingItem> hairCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0),
+                                                                         new ClothingItem(ClothingSet.RED_HAIR, 0),
+                                                                         new ClothingItem(ClothingSet.GREEN_HAIR, 0),
+                                                                         new ClothingItem(ClothingSet.PURPLE_HAIR, 0),
+                                                                         new ClothingItem(ClothingSet.PINK_HAIR, 0),
+                                                                         new ClothingItem(ClothingSet.BLUE_HAIR, 0)};
 
     private ClothingSet _currentTop;
     public ClothingSet CurrentTop { get { return _currentTop; } }

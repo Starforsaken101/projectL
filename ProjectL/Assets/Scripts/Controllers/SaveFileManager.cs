@@ -119,6 +119,22 @@ public class SaveFileManager
         {
             _ownedHair = Utils.ConvertStringToClothingSaves(PlayerPrefs.GetString(KEY_OWNED_HAIR));
         }
+        if (PlayerPrefs.HasKey(KEY_OWNED_HAIR_ACCESSORY))
+        {
+            _ownedHairAccessory = Utils.ConvertStringToClothingSaves(PlayerPrefs.GetString(KEY_OWNED_HAIR_ACCESSORY));
+        }
+        if (PlayerPrefs.HasKey(KEY_OWNED_TOP))
+        {
+            _ownedTop = Utils.ConvertStringToClothingSaves(PlayerPrefs.GetString(KEY_OWNED_TOP));
+        }
+        if (PlayerPrefs.HasKey(KEY_OWNED_BOTTOM))
+        {
+            _ownedBottom = Utils.ConvertStringToClothingSaves(PlayerPrefs.GetString(KEY_OWNED_BOTTOM));
+        }
+        if (PlayerPrefs.HasKey(KEY_OWNED_SHOES))
+        {
+            _ownedShoes = Utils.ConvertStringToClothingSaves(PlayerPrefs.GetString(KEY_OWNED_SHOES));
+        }
     }
 
     private const string KEY_TINY_MAGNET_UPGRADE_LEVEL = "TinyMagnetUpgradeLevel";
