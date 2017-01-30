@@ -50,6 +50,7 @@ public class SpinningSnail : Enemy
             else
             {
                 _animator.Stop();
+                GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_SNAIL;
                 collision.GetComponent<PlayerController>().OnDeath();
             }
         }

@@ -13,13 +13,24 @@ public class Enemy : MonoBehaviour
             if (collision.transform.position.y - (collision.bounds.size.y/2) > transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2) && 
                 collision.transform.position.x + (collision.bounds.size.x/2) > transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2)) 
             {
-                collision.GetComponent<PlayerController>().OnEnemyJump();
-                gameObject.SetActive(false);
+                PlayerJumpOnEnemy(collision);
             }
             else
             {
-                collision.GetComponent<PlayerController>().OnDeath();
+                KillPlayer(collision);
             }
         }
+    }
+
+    protected virtual void PlayerJumpOnEnemy(Collider2D collision)
+    {
+        collision.GetComponent<PlayerController>().OnEnemyJump();
+        gameObject.SetActive(false);
+    }
+
+    protected virtual void KillPlayer(Collider2D collision)
+    {
+        GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_SPIDER;
+        collision.GetComponent<PlayerController>().OnDeath();
     }
 }

@@ -18,10 +18,12 @@ public class UpgradeManager
     {
         public float radius;
         public int cost;
+        public TutorialState flavorText;
         public TinyMagnet (float radius, int cost)
         {
             this.radius = radius;
             this.cost = cost;
+            this.flavorText = TutorialState.SHOP_UPGRADE_TINY_MAGNET;
         }
     }
 
@@ -29,10 +31,12 @@ public class UpgradeManager
     {
         public float floatTime;
         public int cost;
+        public TutorialState flavorText;
         public FloatTime(float floatTime, int cost)
         {
             this.floatTime = floatTime;
             this.cost = cost;
+            this.flavorText = TutorialState.SHOP_UPGRADE_FLOAT_TIME;
         }
     }
 
@@ -40,10 +44,12 @@ public class UpgradeManager
     {
         public float speed;
         public int cost;
+        public TutorialState flavorText;
         public CatchupSpeed(float speed, int cost)
         {
             this.speed = speed;
             this.cost = cost;
+            this.flavorText = TutorialState.SHOP_UPGRADE_CATCHUP_SPEED;
         }
     }
 
@@ -70,6 +76,21 @@ public class UpgradeManager
         _currentTinyMagnet = _tinyMagnetUpgradePath[SaveFileManager.Instance.TinyMagnetUpgradeLevel];
         _currentFloatTime = _floatTimeUpgradePath[SaveFileManager.Instance.FloatTimeUpgradeLevel];
         _currentCatchupSpeed = _catchupSpeedUpgradePath[SaveFileManager.Instance.CatchupSpeedUpgradeLevel];
+    }
+
+    public TutorialState GetFlavorText(Upgrade upgrade)
+    {
+        switch(upgrade)
+        {
+            case Upgrade.TINY_MAGNET:
+                return _currentTinyMagnet.flavorText;
+            case Upgrade.FLOAT_TIME:
+                return _currentFloatTime.flavorText;
+            case Upgrade.CATCHUP_SPEED:
+                return _currentCatchupSpeed.flavorText;
+        }
+        Debug.LogError("[UpgradeManager:IsMaxUpgrade] Upgrade does not exist");
+        return TutorialState.NONE;
     }
 
     public bool IsMaxUpgrade(Upgrade upgrade)

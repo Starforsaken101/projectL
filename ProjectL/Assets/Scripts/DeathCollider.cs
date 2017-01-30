@@ -8,6 +8,7 @@ public class DeathCollider : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_FALL;
             collider.GetComponent<PlayerController>().OnDeath();
         }
     }

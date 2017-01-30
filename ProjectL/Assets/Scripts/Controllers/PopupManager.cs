@@ -6,7 +6,11 @@ using UnityEngine.Events;
 public enum Popups
 {
     [StringValue("popup-lose")]
-    POPUP_LOSE
+    POPUP_LOSE,
+    [StringValue("popup-tutorial")]
+    POPOP_TUTORIAL,
+    [StringValue("popup-end-tutorial")]
+    POPUP_END_TUTORIAL
 }
 
 public class PopupManager

@@ -23,6 +23,8 @@ public class UIShopUpgrade : MonoBehaviour
     private Button _btnUpgrade;
     [SerializeField]
     private TextMeshProUGUI _cost;
+    [SerializeField]
+    private TextMeshProUGUI _flavorText;
 
     void OnEnable()
     {
@@ -50,6 +52,7 @@ public class UIShopUpgrade : MonoBehaviour
             _cost.text = "MAX";
             return;
         }
+        _flavorText.text = GameController.Instance.GetStringForTutorialState(UpgradeManager.Instance.GetFlavorText(_upgrade));
         _cost.text = UpgradeManager.Instance.GetNextUpgradeCost(_upgrade).ToString();
     }
 }

@@ -135,6 +135,17 @@ public class SaveFileManager
         {
             _ownedShoes = Utils.ConvertStringToClothingSaves(PlayerPrefs.GetString(KEY_OWNED_SHOES));
         }
+
+        // TUTORIALS
+        if (PlayerPrefs.HasKey(KEY_TUTORIAL_COMPLETED))
+        {
+            _completedTutorial = PlayerPrefs.GetInt(KEY_TUTORIAL_COMPLETED) == 0 ? true : false;
+        }
+        else
+        {
+            PlayerPrefs.SetInt(KEY_TUTORIAL_COMPLETED, 1);
+            PlayerPrefs.Save();
+        }
     }
 
     private const string KEY_TINY_MAGNET_UPGRADE_LEVEL = "TinyMagnetUpgradeLevel";
@@ -154,6 +165,21 @@ public class SaveFileManager
     private const string KEY_OWNED_TOP = "OwnedTop";
     private const string KEY_OWNED_BOTTOM = "OwnedBottom";
     private const string KEY_OWNED_SHOES = "OwnedShoes";
+
+    private const string KEY_TUTORIAL_COMPLETED = "CompletedTutorial";
+
+    private bool _completedTutorial = false;
+    public bool CompletedTutorial
+    {  
+        get { return _completedTutorial; }
+    }
+
+    public void CompleteTutorial()
+    {
+        _completedTutorial = true;
+        PlayerPrefs.SetInt(KEY_TUTORIAL_COMPLETED, 0);
+        PlayerPrefs.Save();
+    }
 
     private List<string> _ownedHair = new List<string>();
     private List<string> _ownedHairAccessory = new List<string>();

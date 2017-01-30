@@ -33,9 +33,12 @@ public class SpeedController
         set { _speed = value; }
     }
 
-    public void ResetSpeedController()
+    public void ResetSpeedController(bool resetInitialize = true)
     {
-        _isInitialized = false;
+        if (resetInitialize)
+        {
+            _isInitialized = false;
+        }
         _speed = DEFAULT_SPEED;
     }
 
