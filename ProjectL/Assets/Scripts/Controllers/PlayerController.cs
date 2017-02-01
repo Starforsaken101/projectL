@@ -120,16 +120,19 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Recenter()
     {
-        Vector3 offPosition = transform.position;
-        float recenterSpeed = UpgradeManager.Instance.CurrentCatchupSpeed.speed;
-        Vector3 currentPosition = Vector3.zero;
-        while (transform.position.x <= XPOSITION)
+        if (!_isDead)
         {
-            currentPosition = transform.position;
-            currentPosition.x = transform.position.x + (Time.deltaTime * recenterSpeed);
+            Vector3 offPosition = transform.position;
+            float recenterSpeed = UpgradeManager.Instance.CurrentCatchupSpeed.speed;
+            Vector3 currentPosition = Vector3.zero;
+            while (transform.position.x <= XPOSITION)
+            {
+                currentPosition = transform.position;
+                currentPosition.x = transform.position.x + (Time.deltaTime * recenterSpeed);
 
-            transform.position = currentPosition;
-            yield return null;
+                transform.position = currentPosition;
+                yield return null;
+            }
         }
     }
 

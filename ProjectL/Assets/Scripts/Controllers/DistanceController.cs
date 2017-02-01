@@ -18,13 +18,13 @@ public class DistanceController
         }
     }
 
-    private int _distance;
-    public int Distance
+    private float _distance;
+    public float Distance
     {
         get { return _distance; }
     }
 
-    public void AddToDistance(int distance)
+    public void AddToDistance(float distance)
     {
         _distance += distance;
     }

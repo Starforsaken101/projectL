@@ -35,8 +35,8 @@ public class UIShopUpgrade : MonoBehaviour
     {
         if (Inventory.Instance.TotalCats() >= UpgradeManager.Instance.GetNextUpgradeCost(_upgrade))
         {
-            UpgradeManager.Instance.UpgradeUpgrade(_upgrade);
             Inventory.Instance.SpendCats(UpgradeManager.Instance.GetNextUpgradeCost(_upgrade));
+            UpgradeManager.Instance.UpgradeUpgrade(_upgrade);
             UpdateUIElements();
         }
     }

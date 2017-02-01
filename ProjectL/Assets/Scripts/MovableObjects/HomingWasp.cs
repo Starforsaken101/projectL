@@ -49,9 +49,9 @@ public class HomingWasp : Projectile
         _isTriggered = true;
     }
 
-    protected override void KillPlayer(Collider2D collision)
+    protected override void OnPlayerDeath()
     {
-        base.KillPlayer(collision);
+        base.OnPlayerDeath();
         GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_WASP;
     }
 }

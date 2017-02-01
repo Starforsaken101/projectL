@@ -32,27 +32,18 @@ public class SpinningSnail : Enemy
     {
         if (SpeedController.Instance.IsInitialized && _isTriggered)
         {
-            transform.position += Vector3.left * (SpeedController.Instance.Speed * _multiplier * Time.deltaTime);
+            transform.parent.position += Vector3.left * (SpeedController.Instance.Speed * _multiplier * Time.deltaTime);
         }
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnEnemyBounce()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            //Debug.Log("Transform: x" + (transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2)) + " Collision x: " + (collision.transform.position.x + (collision.bounds.size.x / 2)));
-            //Debug.Log("Transform: y" + (transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2)) + " Collision y: " + (collision.transform.position.y - (collision.bounds.size.y / 2)));
-            if (collision.transform.position.y - (collision.bounds.size.y / 2) > transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2) && // -1.952
-                collision.transform.position.x + (collision.bounds.size.x / 2) > transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2))
-            {
-                collision.GetComponent<PlayerController>().OnEnemyJump();
-            }
-            else
-            {
-                _animator.Stop();
-                GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_SNAIL;
-                collision.GetComponent<PlayerController>().OnDeath();
-            }
-        }
+        // Do nothing.
+    }
+
+    protected override void OnPlayerDeath()
+    {
+        base.OnPlayerDeath();
+        GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_SNAIL;
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FTUE : MonoBehaviour
 {
-    private const int DISTANCE_JUMP = 10;
-    private const int DISTANCE_TEACUPS = 65;
-    private const int DISTANCE_ENEMY = 110;
-    private const int DISTANCE_JUMP_OFF_ENEMY = 155;
-    private const int DISTANCE_WASP = 200;
+    private const int DISTANCE_JUMP = 18;
+    private const int DISTANCE_TEACUPS = 80;
+    private const int DISTANCE_ENEMY = 125;
+    private const int DISTANCE_JUMP_OFF_ENEMY = 180;
+    private const int DISTANCE_WASP = 220;
     private const int DISTANCE_END_TUTORIAL = 250;
 
     private bool _collectTeacupsShown = false;

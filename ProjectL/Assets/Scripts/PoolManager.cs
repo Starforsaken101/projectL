@@ -6,7 +6,7 @@ public class PoolManager : Singleton<PoolManager>
 {
     private static string PATH_PREFIX = "Prefabs/";
     private List<string> _keys = new List<string>() { "p_cat", "p_wasp", "p_floorPlatform", "p_floorPlatform_half", "p_thinPlatform", "p_bigMushroomPlatform_spider",
-                                                      "p_enemy1", "p_spinningSnail",
+                                                      "p_spinningSnail",
                                                       "p_level1_platform1", "p_level1_platform2", "p_level1_platform5",
                                                       "p_spiderPlatform_oneLeft", "p_spiderPlatform_oneRight", "p_spiderPlatform_oneMiddle", "p_spiderPlatform_two", "p_floorPlatform_half_spider",
                                                       "p_snailPlatform_oneLeft", "p_thinPlatform_snail",
@@ -35,6 +35,12 @@ public class PoolManager : Singleton<PoolManager>
         for (int i = 0; i < 3; i++)
         {
             GameObject gameObject = Utils.InstantiateGameObjectByPath(PATH_PREFIX + prefabKey);
+
+            // This shouldn't happen, but just in case
+            if (gameObject == null)
+            {
+                continue;
+            }
             gameObject.SetActive(false);
             newStack.Push(gameObject);
         }

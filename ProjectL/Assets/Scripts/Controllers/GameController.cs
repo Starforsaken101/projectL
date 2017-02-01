@@ -22,6 +22,7 @@ public class GameController
         _tutorialText.Add(TutorialState.DEATH_BY_SPIDER, "Spiders are nasty. Jump on them to kill them!");
         _tutorialText.Add(TutorialState.DEATH_BY_SNAIL, "Snails love you man, but you still gotta dodge them");
         _tutorialText.Add(TutorialState.DEATH_BY_WASP, "I didn't know you liked wasps...avoid them to not die");
+        _tutorialText.Add(TutorialState.DEATH_BY_TRAP, "Thorns are pointy so don't touch them!");
 
         _tutorialText.Add(TutorialState.SHOP_UPGRADE_CATCHUP_SPEED, "This upgrade effects how fast it takes you to run back if you fall back a little!");
         _tutorialText.Add(TutorialState.SHOP_UPGRADE_FLOAT_TIME, "This upgrade is kind of like having an umbrella under your pants");

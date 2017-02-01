@@ -4,33 +4,34 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField]
+    private EnemyDeathCollider _enemyDeathCollider;
+    [SerializeField]
+    private EnemyBounceCollider _enemyBounceCollider;
+
+    void OnEnable()
     {
-        if (collision.gameObject.tag == "Player")
+        if (_enemyBounceCollider == null)
         {
-            //Debug.Log("Transform: x" + (transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2)) + " Collision x: " + (collision.transform.position.x + (collision.bounds.size.x / 2)));
-            //Debug.Log("Transform: y" + (transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2)) + " Collision y: " + (collision.transform.position.y - (collision.bounds.size.y / 2)));
-            if (collision.transform.position.y - (collision.bounds.size.y/2) > transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2) && 
-                collision.transform.position.x + (collision.bounds.size.x/2) > transform.position.x - (GetComponent<Collider2D>().bounds.size.x / 2)) 
-            {
-                PlayerJumpOnEnemy(collision);
-            }
-            else
-            {
-                KillPlayer(collision);
-            }
+            int i = 0;
         }
+        _enemyBounceCollider.OnBounce.AddListener(OnEnemyBounce);
+        _enemyDeathCollider.OnDeath.AddListener(OnPlayerDeath);
     }
 
-    protected virtual void PlayerJumpOnEnemy(Collider2D collision)
+    void OnDisable()
     {
-        collision.GetComponent<PlayerController>().OnEnemyJump();
-        gameObject.SetActive(false);
+        _enemyBounceCollider.OnBounce.RemoveListener(OnEnemyBounce);
+        _enemyDeathCollider.OnDeath.RemoveListener(OnPlayerDeath);
     }
 
-    protected virtual void KillPlayer(Collider2D collision)
+    protected virtual void OnPlayerDeath()
     {
         GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_SPIDER;
-        collision.GetComponent<PlayerController>().OnDeath();
+    }
+    
+    protected virtual void OnEnemyBounce()
+    {
+        gameObject.SetActive(false);
     }
 }

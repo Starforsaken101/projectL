@@ -69,6 +69,7 @@ public class PlatformSpawner : MonoBehaviour
 
     private IEnumerator SpawnPattern(PatternScriptableObject pattern)
     {
+        //Debug.Log("***** SPAWN PATTERN: " + pattern.name + " at DISTANCE: " + DistanceController.Instance.Distance);
         for (int i = 0; i < pattern.platforms.Count; i++)
         {
             yield return StartCoroutine(SpawnPlatformByKey(pattern.platforms[i]));
@@ -90,6 +91,7 @@ public class PlatformSpawner : MonoBehaviour
         GameObject platform = PoolManager.Instance.GetGameObject(platformData.platformID);
         MovableObject movableObject = platform.GetComponentInChildren<MovableObject>();
 
+        //Debug.Log("Spawn platform with key: " + platformData.platformID);
         if (platformData.platformAsset != null)
         {
             if (movableObject != null)
