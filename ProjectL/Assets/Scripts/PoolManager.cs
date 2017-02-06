@@ -12,7 +12,7 @@ public class PoolManager : Singleton<PoolManager>
                                                       "p_snailPlatform_oneLeft", "p_thinPlatform_snail",
                                                       "p_bigMushroomPlatform", "p_platformWithMushroom", "p_platformWithMushroomAndSnail",
                                                       "p_squareMushroomPlatform",
-                                                      "p_thornTrap", "p_platformOneTrap", "p_platformSpiderTrapSpider", "p_platformSpiderTrap", "p_floorPlatform_half_trap"};
+                                                      "p_thornTrap", "p_platformOneTrap", "p_platformSpiderTrapSpider", "p_platformSpiderTrap", "p_floorPlatform_half_trap", "p_thinPlatform_oneTrap"};
 
     Dictionary<string, Stack<GameObject>> _pool = new Dictionary<string, Stack<GameObject>>();
 

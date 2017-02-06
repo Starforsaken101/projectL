@@ -63,6 +63,15 @@ public class UIClothingItem : MonoBehaviour
             _txtCost.text = _clothingItem.cost.ToString();
             _btnBuy.gameObject.SetActive(true);
             _btnEquip.gameObject.SetActive(false);
+
+            if (_clothingItem.cost > Inventory.Instance.TotalCats())
+            {
+                _btnBuy.interactable = false;
+            }
+            else
+            {
+                _btnBuy.interactable = true;
+            }
         }
     }
 
@@ -100,6 +109,18 @@ public class UIClothingItem : MonoBehaviour
             Inventory.Instance.SpendCats(_clothingItem.cost);
             ClothingManager.Instance.PurchaseClothingItem(_clothingType, _clothingItem);
             UpdateUIElements();
+        }
+    }
+
+    private void OnCatsUpdated(int cats)
+    {
+        if (_clothingItem.cost > cats)
+        {
+            _btnBuy.interactable = false;
+        }
+        else
+        {
+            _btnBuy.interactable = true;
         }
     }
 }

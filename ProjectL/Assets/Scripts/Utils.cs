@@ -21,6 +21,7 @@ public class EquipClothingItemEvent : UnityEvent<ClothingType, string> { }
 public static class Utils
 {
     public const string ROOT_CLOTHING_PATH = "Sprites/Clothing/";
+    public const string ROOT_UPGRADE_PATH = "Sprites/Upgrades/";
 
     public static GameObject InstantiateGameObjectByPath(string path)
     {
