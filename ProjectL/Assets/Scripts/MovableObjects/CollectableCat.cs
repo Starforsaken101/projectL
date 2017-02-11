@@ -6,9 +6,11 @@ public class CollectableCat : MonoBehaviour
 {
     private bool _isMoving = false;
     private Vector3 _finalDestination;
+    private AudioSource _sfxCollect;
 
     void OnEnable()
     {
+        _sfxCollect = GetComponent<AudioSource>();
         _isMoving = false;
         transform.localPosition = Vector3.zero;
     }
@@ -17,9 +19,19 @@ public class CollectableCat : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            StartCoroutine(PlaySound());
             ScoreManager.Instance.AddPoints(1);
             gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator PlaySound()
+    {
+        AudioSource tempSound = Utils.CreateSFX(Utils.SFX_COLLECT_TEACUP);
+        tempSound.volume = 0.4f;
+        tempSound.Play();
+        yield return new WaitWhile(() => tempSound.isPlaying);
+        Destroy(tempSound);
     }
 
     public void MoveTowardsPlayer(GameObject player)

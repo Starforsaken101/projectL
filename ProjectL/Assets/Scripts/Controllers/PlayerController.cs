@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidBody;
 
+    // SFX
+    [SerializeField]
+    private AudioSource _sfxJump;
+
     private const float BOUNCE_BUFFER_TIME = 0.2f;
     private const float XPOSITION = -2.97f;
 
@@ -63,6 +67,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 5);
                 }
+                _sfxJump.Play();
                 Jump();
             }
 

@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private EnemyDeathCollider _enemyDeathCollider;
     [SerializeField]
     private EnemyBounceCollider _enemyBounceCollider;
+    [SerializeField]
+    private AudioSource _sfxDeath;
 
     void OnEnable()
     {
@@ -32,6 +34,17 @@ public class Enemy : MonoBehaviour
     
     protected virtual void OnEnemyBounce()
     {
+        StartCoroutine(PlaySound());
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator PlaySound()
+    {
+        AudioSource tempSound = Utils.CreateSFX(Utils.SFX_ENEMY_DIE);
+        tempSound.volume = 1.0f;
+        tempSound.Play();
+        yield return new WaitWhile(() => tempSound.isPlaying);
+
+        Destroy(tempSound);
     }
 }

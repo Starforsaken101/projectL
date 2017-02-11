@@ -23,6 +23,9 @@ public static class Utils
     public const string ROOT_CLOTHING_PATH = "Sprites/Clothing/";
     public const string ROOT_UPGRADE_PATH = "Sprites/Upgrades/";
 
+    public const string SFX_ENEMY_DIE = "Sounds/340794__kuchenanderung1__slime-squish";
+    public const string SFX_COLLECT_TEACUP = "Sounds/171583__fins__3-up-fast-1";
+
     public static GameObject InstantiateGameObjectByPath(string path)
     {
         UnityEngine.Object prefab = Resources.Load(path);
@@ -87,5 +90,16 @@ public static class Utils
         }
 
         return clothingStrings;
+    }
+
+    public static AudioSource CreateSFX(string path)
+    {
+        GameObject tempSound = new GameObject();
+        AudioSource sfx = tempSound.AddComponent<AudioSource>();
+        sfx.clip = Resources.Load<AudioClip>(path);
+        sfx.volume = 0.6f;
+        sfx.playOnAwake = false;
+
+        return sfx;
     }
 }

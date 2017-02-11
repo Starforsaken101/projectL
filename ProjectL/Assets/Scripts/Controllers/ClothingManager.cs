@@ -22,7 +22,19 @@ public enum ClothingSet
     [StringValue("PinkHair")]
     PINK_HAIR,
     [StringValue("BlueHair")]
-    BLUE_HAIR
+    BLUE_HAIR,
+    [StringValue("YellowHeadphones")]
+    YELLOW_HEADPHONES,
+    [StringValue("PinkHeadphones")]
+    PINK_HEADPHONES,
+    [StringValue("PurpleHeadphones")]
+    PURPLE_HEADPHONES,
+    [StringValue("GreenHeadphones")]
+    GREEN_HEADPHONES,
+    [StringValue("RedHeadphones")]
+    RED_HEADPHONES,
+    [StringValue("LightBlueHeadphones")]
+    LIGHT_BLUE_HEADPHONES
 }
 
 public enum ClothingType
@@ -217,7 +229,13 @@ public class ClothingManager
     private ClothingSet _currentHairAccessory;
     public ClothingSet CurrentHairAccessory { get { return _currentHairAccessory; } }
     private List<ClothingItem> hairAccessoryCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.NONE, 0),
-                                                                                  new ClothingItem(ClothingSet.DEFAULT_SET, 0) };
+                                                                                  new ClothingItem(ClothingSet.DEFAULT_SET, 0),
+                                                                                  new ClothingItem(ClothingSet.YELLOW_HEADPHONES, 0),
+                                                                                  new ClothingItem(ClothingSet.PINK_HEADPHONES, 0),
+                                                                                  new ClothingItem(ClothingSet.PURPLE_HEADPHONES, 0),
+                                                                                  new ClothingItem(ClothingSet.GREEN_HEADPHONES, 0),
+                                                                                  new ClothingItem(ClothingSet.RED_HEADPHONES, 0),
+                                                                                  new ClothingItem(ClothingSet.LIGHT_BLUE_HEADPHONES, 0)};
 
     private ClothingSet _currentShoes;
     public ClothingSet CurrentShoes { get { return _currentShoes; } }
