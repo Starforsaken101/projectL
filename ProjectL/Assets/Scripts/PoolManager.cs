@@ -105,6 +105,16 @@ public class PoolManager : Singleton<PoolManager>
             }
         }
 
+        // Stop sounds
+        AudioSource[] audioSources = gameObject.GetComponentsInChildren<AudioSource>();
+        if (audioSources.Length > 0)
+        {
+            for (int i = 0; i < audioSources.Length; i++)
+            {
+                audioSources[i].Stop();
+            }
+        }
+
         Stack<GameObject> stack = _pool[key];
         if (stack.Count == 3)
         {

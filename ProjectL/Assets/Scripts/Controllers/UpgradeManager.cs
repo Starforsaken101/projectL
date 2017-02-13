@@ -158,8 +158,8 @@ public class UpgradeManager
     private TinyMagnet _currentTinyMagnet;
     public TinyMagnet CurrentTinyMagnet {  get { return _currentTinyMagnet; } }
 
-    private List<TinyMagnet> _tinyMagnetUpgradePath = new List<TinyMagnet> { new TinyMagnet(0.9f, 0), new TinyMagnet(1.0f, 2),
-                                                                         new TinyMagnet(1.1f, 40), new TinyMagnet(1.2f, 60)};
+    private List<TinyMagnet> _tinyMagnetUpgradePath = new List<TinyMagnet> { new TinyMagnet(0.9f, 0), new TinyMagnet(1.0f, 10),
+                                                                             new TinyMagnet(1.1f, 40), new TinyMagnet(1.2f, 80)};
 
     private int GetUpgradeLevelOfTinyMagnet() { return _tinyMagnetUpgradePath.IndexOf(_currentTinyMagnet); }
     private TinyMagnet GetNextTinyMagnetUpgrade()
@@ -182,8 +182,8 @@ public class UpgradeManager
     private FloatTime _currentFloatTime;
     public FloatTime CurrentFloatTime {  get { return _currentFloatTime; } }
 
-    private List<FloatTime> _floatTimeUpgradePath = new List<FloatTime> { new FloatTime(0f, 0), new FloatTime(0.5f, 20),
-                                                                          new FloatTime(1.0f, 40), new FloatTime(1.2f, 60)};
+    private List<FloatTime> _floatTimeUpgradePath = new List<FloatTime> { new FloatTime(0f, 0), new FloatTime(0.5f, 10),
+                                                                          new FloatTime(1.0f, 40), new FloatTime(1.2f, 80)};
 
     private int GetUpgradeLevelOfFloatTime() { return _floatTimeUpgradePath.IndexOf(_currentFloatTime); }
     private FloatTime GetNextFloatTimeUpgrade()
@@ -206,8 +206,8 @@ public class UpgradeManager
     private CatchupSpeed _currentCatchupSpeed;
     public CatchupSpeed CurrentCatchupSpeed { get { return _currentCatchupSpeed; } }
 
-    private List<CatchupSpeed> _catchupSpeedUpgradePath = new List<CatchupSpeed> { new CatchupSpeed(0.5f, 0), new CatchupSpeed(0.75f, 20),
-                                                                                   new CatchupSpeed(1.0f, 40), new CatchupSpeed(1.5f, 60)};
+    private List<CatchupSpeed> _catchupSpeedUpgradePath = new List<CatchupSpeed> { new CatchupSpeed(0.5f, 0), new CatchupSpeed(0.75f, 10),
+                                                                                   new CatchupSpeed(1.0f, 40), new CatchupSpeed(1.5f, 80)};
 
     private int GetUpgradeLevelOfCatchupSpeed() { return _catchupSpeedUpgradePath.IndexOf(_currentCatchupSpeed); }
     private CatchupSpeed GetNextCatchupSpeedLevel()

@@ -25,7 +25,7 @@ public class UIConfigureClothing : MonoBehaviour
         {
             child = childrenComponents[i];
 
-            if (child.gameObject.name == "hair")
+            if (child.gameObject.name == "hair" && ClothingManager.Instance.CurrentTop != ClothingSet.MALEFICENT)
             {
                 ConfigureClothing(child, ClothingManager.Instance.CurrentHair);
             }

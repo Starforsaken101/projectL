@@ -146,6 +146,27 @@ public class SaveFileManager
             PlayerPrefs.SetInt(KEY_TUTORIAL_COMPLETED, 1);
             PlayerPrefs.Save();
         }
+
+        // SETTINGS
+        if (PlayerPrefs.HasKey(KEY_SETTINGS_SOUND_ON))
+        {
+            _soundOn = PlayerPrefs.GetInt(KEY_SETTINGS_SOUND_ON) == 0 ? true : false;
+        }
+        else
+        {
+            PlayerPrefs.SetInt(KEY_SETTINGS_SOUND_ON, 0);
+            PlayerPrefs.Save();
+        }
+
+        if (PlayerPrefs.HasKey(KEY_SETTINGS_MUSIC_ON))
+        {
+            _musicOn = PlayerPrefs.GetInt(KEY_SETTINGS_MUSIC_ON) == 0 ? true : false;
+        }
+        else
+        {
+            PlayerPrefs.SetInt(KEY_SETTINGS_MUSIC_ON, 0);
+            PlayerPrefs.Save();
+        }
     }
 
     private const string KEY_TINY_MAGNET_UPGRADE_LEVEL = "TinyMagnetUpgradeLevel";
@@ -165,6 +186,9 @@ public class SaveFileManager
     private const string KEY_OWNED_TOP = "OwnedTop";
     private const string KEY_OWNED_BOTTOM = "OwnedBottom";
     private const string KEY_OWNED_SHOES = "OwnedShoes";
+
+    private const string KEY_SETTINGS_SOUND_ON = "Sound";
+    private const string KEY_SETTINGS_MUSIC_ON = "Music";
 
     private const string KEY_TUTORIAL_COMPLETED = "CompletedTutorial";
 
@@ -357,6 +381,35 @@ public class SaveFileManager
             _numCats = value;
             PlayerPrefs.SetInt(KEY_NUM_CATS, _numCats);
             PlayerPrefs.Save();
+        }
+    }
+
+    private bool _soundOn = true;
+    public bool Sound
+    {
+        get { return _soundOn; }
+        set
+        {
+            _soundOn = value;
+            PlayerPrefs.SetInt(KEY_SETTINGS_SOUND_ON, _soundOn ? 0 : 1);
+            PlayerPrefs.Save();
+        }
+    }
+
+    private bool _musicOn = true;
+    public bool Music
+    {
+        get { return _musicOn; }
+        set
+        {
+            _musicOn = value;
+            PlayerPrefs.SetInt(KEY_SETTINGS_MUSIC_ON, _musicOn ? 0 : 1);
+            PlayerPrefs.Save();
+
+            if (_musicOn)
+                AudioListener.volume = 1.0f;
+            else
+                AudioListener.volume = 0.0f;
         }
     }
 }

@@ -8,15 +8,9 @@ public class Enemy : MonoBehaviour
     private EnemyDeathCollider _enemyDeathCollider;
     [SerializeField]
     private EnemyBounceCollider _enemyBounceCollider;
-    [SerializeField]
-    private AudioSource _sfxDeath;
 
-    void OnEnable()
+    protected virtual void OnEnable()
     {
-        if (_enemyBounceCollider == null)
-        {
-            int i = 0;
-        }
         _enemyBounceCollider.OnBounce.AddListener(OnEnemyBounce);
         _enemyDeathCollider.OnDeath.AddListener(OnPlayerDeath);
     }
@@ -29,22 +23,13 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnPlayerDeath()
     {
+        SoundManager.Instance.PlaySFX(Utils.SFX_PLAYER_DEATH_BY_ENEMY, 0.5f);
         GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_SPIDER;
     }
     
     protected virtual void OnEnemyBounce()
     {
-        StartCoroutine(PlaySound());
+        SoundManager.Instance.PlaySFX(Utils.SFX_ENEMY_DIE, 0.75f);
         gameObject.SetActive(false);
-    }
-
-    private IEnumerator PlaySound()
-    {
-        AudioSource tempSound = Utils.CreateSFX(Utils.SFX_ENEMY_DIE);
-        tempSound.volume = 1.0f;
-        tempSound.Play();
-        yield return new WaitWhile(() => tempSound.isPlaying);
-
-        Destroy(tempSound);
     }
 }

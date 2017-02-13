@@ -8,8 +8,8 @@ public class Trap : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<PlayerController>().OnDeath();
             GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_TRAP;
+            collision.GetComponent<PlayerController>().OnDeath();
         }
     }
 }

@@ -9,18 +9,31 @@ public class HomingWasp : Projectile
     private float _homingTime = 5.0f;
     [SerializeField]
     private float _multiplier = 1.0f;
+    [SerializeField]
+    private AudioSource _sfxBuzz;
 
     private bool _isTriggered = false;
     private float _currentTime = 0;
 
     private const float X_POSITION = 5.4f;
 
-    void OnEnable()
+    void Awake()
     {
+        _sfxBuzz = GetComponent<AudioSource>();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         _isTriggered = false;
         _currentTime = 0;
 
         transform.position = new Vector3(X_POSITION, transform.position.y, transform.position.z);
+
+        if (SaveFileManager.Instance.Sound)
+        {
+            _sfxBuzz.Play();
+        }
 
         StartCoroutine(TargetPlayer());
     }

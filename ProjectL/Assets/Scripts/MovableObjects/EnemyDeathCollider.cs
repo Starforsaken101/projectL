@@ -12,8 +12,8 @@ public class EnemyDeathCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<PlayerController>().OnDeath();
             OnDeath.Invoke();
+            collision.GetComponent<PlayerController>().OnDeath();
         }
     }
 }

@@ -34,7 +34,9 @@ public enum ClothingSet
     [StringValue("RedHeadphones")]
     RED_HEADPHONES,
     [StringValue("LightBlueHeadphones")]
-    LIGHT_BLUE_HEADPHONES
+    LIGHT_BLUE_HEADPHONES,
+    [StringValue("Maleficent")]
+    MALEFICENT
 }
 
 public enum ClothingType
@@ -208,34 +210,35 @@ public class ClothingManager
     private ClothingSet _currentHair;
     public ClothingSet CurrentHair {  get { return _currentHair; } }
     private List<ClothingItem> hairCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0),
-                                                                         new ClothingItem(ClothingSet.RED_HAIR, 0),
-                                                                         new ClothingItem(ClothingSet.GREEN_HAIR, 0),
-                                                                         new ClothingItem(ClothingSet.PURPLE_HAIR, 0),
-                                                                         new ClothingItem(ClothingSet.PINK_HAIR, 0),
-                                                                         new ClothingItem(ClothingSet.BLUE_HAIR, 0)};
+                                                                         new ClothingItem(ClothingSet.RED_HAIR, 50),
+                                                                         new ClothingItem(ClothingSet.GREEN_HAIR, 50),
+                                                                         new ClothingItem(ClothingSet.PURPLE_HAIR, 50),
+                                                                         new ClothingItem(ClothingSet.PINK_HAIR, 50),
+                                                                         new ClothingItem(ClothingSet.BLUE_HAIR, 50)};
 
     private ClothingSet _currentTop;
     public ClothingSet CurrentTop { get { return _currentTop; } }
     private List<ClothingItem> topCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0),
-                                                                        new ClothingItem(ClothingSet.RED_DRESS_SET, 0),
-                                                                        new ClothingItem(ClothingSet.PH_SET, 0) };
+                                                                        new ClothingItem(ClothingSet.RED_DRESS_SET, 100),
+                                                                        new ClothingItem(ClothingSet.PH_SET, 100),
+                                                                        new ClothingItem(ClothingSet.MALEFICENT, 200) };
 
     private ClothingSet _currentBottom;
     public ClothingSet CurrentBottom { get { return _currentBottom; } }
     private List<ClothingItem> bottomCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0),
-                                                                           new ClothingItem(ClothingSet.RED_DRESS_SET, 0),
-                                                                           new ClothingItem(ClothingSet.PH_SET, 0) };
+                                                                           new ClothingItem(ClothingSet.RED_DRESS_SET, 25),
+                                                                           new ClothingItem(ClothingSet.PH_SET, 5) };
 
     private ClothingSet _currentHairAccessory;
     public ClothingSet CurrentHairAccessory { get { return _currentHairAccessory; } }
     private List<ClothingItem> hairAccessoryCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.NONE, 0),
-                                                                                  new ClothingItem(ClothingSet.DEFAULT_SET, 0),
-                                                                                  new ClothingItem(ClothingSet.YELLOW_HEADPHONES, 0),
-                                                                                  new ClothingItem(ClothingSet.PINK_HEADPHONES, 0),
-                                                                                  new ClothingItem(ClothingSet.PURPLE_HEADPHONES, 0),
-                                                                                  new ClothingItem(ClothingSet.GREEN_HEADPHONES, 0),
-                                                                                  new ClothingItem(ClothingSet.RED_HEADPHONES, 0),
-                                                                                  new ClothingItem(ClothingSet.LIGHT_BLUE_HEADPHONES, 0)};
+                                                                                  new ClothingItem(ClothingSet.DEFAULT_SET, 30),
+                                                                                  new ClothingItem(ClothingSet.YELLOW_HEADPHONES, 30),
+                                                                                  new ClothingItem(ClothingSet.PINK_HEADPHONES, 30),
+                                                                                  new ClothingItem(ClothingSet.PURPLE_HEADPHONES, 30),
+                                                                                  new ClothingItem(ClothingSet.GREEN_HEADPHONES, 30),
+                                                                                  new ClothingItem(ClothingSet.RED_HEADPHONES, 30),
+                                                                                  new ClothingItem(ClothingSet.LIGHT_BLUE_HEADPHONES, 30)};
 
     private ClothingSet _currentShoes;
     public ClothingSet CurrentShoes { get { return _currentShoes; } }

@@ -67,7 +67,11 @@ public class PlayerController : MonoBehaviour
                 {
                     _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 5);
                 }
-                _sfxJump.Play();
+
+                if (SaveFileManager.Instance.Sound)
+                {
+                    _sfxJump.Play();
+                }
                 Jump();
             }
 

@@ -8,6 +8,7 @@ public class DeathCollider : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            SoundManager.Instance.PlaySFX(Utils.SFX_PLAYER_DEATH_BY_FALL, 1.0f);
             GameController.Instance.CurrentTutorialState = TutorialState.DEATH_BY_FALL;
             collider.GetComponent<PlayerController>().OnDeath();
         }

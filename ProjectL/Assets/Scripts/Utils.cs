@@ -25,6 +25,8 @@ public static class Utils
 
     public const string SFX_ENEMY_DIE = "Sounds/340794__kuchenanderung1__slime-squish";
     public const string SFX_COLLECT_TEACUP = "Sounds/171583__fins__3-up-fast-1";
+    public const string SFX_PLAYER_DEATH_BY_ENEMY = "Sounds/77525__superex1110__door-bump-1";
+    public const string SFX_PLAYER_DEATH_BY_FALL = "Sounds/221626__ansel__body-impact";
 
     public static GameObject InstantiateGameObjectByPath(string path)
     {
@@ -95,9 +97,9 @@ public static class Utils
     public static AudioSource CreateSFX(string path)
     {
         GameObject tempSound = new GameObject();
+        tempSound.name = path;
         AudioSource sfx = tempSound.AddComponent<AudioSource>();
         sfx.clip = Resources.Load<AudioClip>(path);
-        sfx.volume = 0.6f;
         sfx.playOnAwake = false;
 
         return sfx;

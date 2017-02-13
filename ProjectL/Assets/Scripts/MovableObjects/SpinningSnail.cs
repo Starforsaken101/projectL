@@ -12,8 +12,9 @@ public class SpinningSnail : Enemy
 
     private bool _isTriggered;
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         _isTriggered = false;
     }
 
