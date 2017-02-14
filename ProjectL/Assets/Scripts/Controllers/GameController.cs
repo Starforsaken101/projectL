@@ -26,7 +26,7 @@ public class GameController
         _tutorialText.Add(TutorialState.DEATH_BY_TRAP, "Thorns are gonna f*&k you up");
 
         _tutorialText.Add(TutorialState.SHOP_UPGRADE_CATCHUP_SPEED, "This upgrade effects how fast it takes you to catch up if you fall back a little!");
-        _tutorialText.Add(TutorialState.SHOP_UPGRADE_FLOAT_TIME, "This upgrade will whisk you up, up, and away!");
+        _tutorialText.Add(TutorialState.SHOP_UPGRADE_FLOAT_TIME, "This upgrade will whisk you up, up, and away! (Tap and hold after jump)");
         _tutorialText.Add(TutorialState.SHOP_UPGRADE_TINY_MAGNET, "This upgrade makes you positively magnetic");
 
         _tutorialText.Add(TutorialState.GAME_TAP_TO_JUMP, "Tap the screen to jump!");

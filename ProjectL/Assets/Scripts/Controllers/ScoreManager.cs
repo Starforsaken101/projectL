@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class ScoreManager
 {
-    private const int POINTS_PER_CAT = 20;
+    public const int POINTS_PER_CAT = 20;
 
     private static ScoreManager _instance;
     public static ScoreManager Instance

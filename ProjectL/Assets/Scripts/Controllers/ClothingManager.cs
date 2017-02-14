@@ -36,7 +36,9 @@ public enum ClothingSet
     [StringValue("LightBlueHeadphones")]
     LIGHT_BLUE_HEADPHONES,
     [StringValue("Maleficent")]
-    MALEFICENT
+    MALEFICENT,
+    [StringValue("WhiteShoes")]
+    WHITE_SHOES
 }
 
 public enum ClothingType
@@ -227,7 +229,7 @@ public class ClothingManager
     public ClothingSet CurrentBottom { get { return _currentBottom; } }
     private List<ClothingItem> bottomCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0),
                                                                            new ClothingItem(ClothingSet.RED_DRESS_SET, 25),
-                                                                           new ClothingItem(ClothingSet.PH_SET, 5) };
+                                                                           new ClothingItem(ClothingSet.PH_SET, 50) };
 
     private ClothingSet _currentHairAccessory;
     public ClothingSet CurrentHairAccessory { get { return _currentHairAccessory; } }
@@ -242,5 +244,6 @@ public class ClothingManager
 
     private ClothingSet _currentShoes;
     public ClothingSet CurrentShoes { get { return _currentShoes; } }
-    private List<ClothingItem> shoeCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0) };
+    private List<ClothingItem> shoeCollection = new List<ClothingItem> { new ClothingItem(ClothingSet.DEFAULT_SET, 0),
+                                                                         new ClothingItem(ClothingSet.WHITE_SHOES, 20) };
 }
