@@ -1,4 +1,4 @@
-# projectL
+# Code Review - 2018
 
 ProjectL is the codename of a small game that I wrote for a friend's birthday two years ago. It took about 2 and a half months of development and some of it was very rushed due to needing to spend most of my time on my actual full-time job.
 
